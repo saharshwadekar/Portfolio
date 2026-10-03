@@ -1,0 +1,498 @@
+@import "tailwindcss";
+
+/* ───────────────────────── Tokens ───────────────────────── */
+
+/* Palette follows Apple's system neutrals. */
+:root {
+  --bg: #000000;
+  --bg-raise: #111113;
+  --fg: #f5f5f7;
+  --muted: #86868b;
+  --faint: #48484a;
+  --line: rgb(255 255 255 / 0.12);
+  --line-strong: rgb(255 255 255 / 0.24);
+  --surface: #1d1d1f;
+  --dot: rgb(255 255 255 / 0.07);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -8px rgb(0 0 0 / 0.6);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 24px 48px -12px rgb(0 0 0 / 0.7);
+
+  --accent: #f5f5f7;
+  --accent-text: #f5f5f7;
+  --on-accent: #000000;
+
+  --spectrum: linear-gradient(90deg, #4db2ff, #b6f24a, #ff6b82, #ffb547, #a68bff);
+
+  --gutter: clamp(16px, 3.2vw, 48px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f5f7;
+  --bg-raise: #e8e8ed;
+  --fg: #1d1d1f;
+  --muted: #6e6e73;
+  --faint: #aeaeb2;
+  --line: #d2d2d7;
+  --line-strong: #b0b0b6;
+  --surface: #ffffff;
+  --dot: rgb(0 0 0 / 0.08);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -10px rgb(0 0 0 / 0.1);
+  --shadow-lift: 0 2px 6px rgb(0 0 0 / 0.05), 0 24px 48px -16px rgb(0 0 0 / 0.18);
+  --accent: #1d1d1f;
+  --accent-text: #1d1d1f;
+  --on-accent: #f5f5f7;
+  color-scheme: light;
+}
+
+/* Area accents (page tints and the arcade palette); keep in sync with `areas` in src/content/profile.ts */
+:root[data-area="salesforce"] { --accent: #4db2ff; --accent-text: #4db2ff; --on-accent: #04121f; }
+:root[data-area="backend"]    { --accent: #b6f24a; --accent-text: #b6f24a; --on-accent: #0f1a02; }
+:root[data-area="frontend"]   { --accent: #ff6b82; --accent-text: #ff6b82; --on-accent: #1f0409; }
+:root[data-area="fullstack"]  { --accent: #ffb547; --accent-text: #ffb547; --on-accent: #1f1102; }
+:root[data-area="mobile"]     { --accent: #a68bff; --accent-text: #a68bff; --on-accent: #0c0521; }
+
+:root[data-theme="light"][data-area="salesforce"] { --accent-text: #0b6fc2; }
+:root[data-theme="light"][data-area="backend"]    { --accent-text: #4e7a08; }
+:root[data-theme="light"][data-area="frontend"]   { --accent-text: #c21e3f; }
+:root[data-theme="light"][data-area="fullstack"]  { --accent-text: #a05a00; }
+:root[data-theme="light"][data-area="mobile"]     { --accent-text: #5b3fd1; }
+
+/*
+ * Typography.
+ * Apple devices render SF Pro (Text below 20px, Display above, switched
+ * automatically). Everything else gets Inter with optical sizing.
+ * Letter-spacing is size-specific, like Apple's tracking tables: the
+ * defaults are Inter's dynamic metrics, and `html.sf` swaps in the values
+ * apple.com uses for SF Pro.
+ */
+:root {
+  --ls-xs: 0em;       /* 12 */
+  --ls-sm: -0.006em;  /* 14 */
+  --ls-base: -0.011em;/* 17 */
+  --ls-lg: -0.014em;  /* 19 */
+  --ls-xl: -0.017em;  /* 21 */
+  --ls-2xl: -0.019em; /* 24 */
+  --ls-3xl: -0.021em; /* 28 */
+  --ls-4xl: -0.022em; /* 32 */
+  --ls-5xl: -0.024em; /* 40 */
+  --ls-6xl: -0.026em; /* 48 */
+  --ls-7xl: -0.028em; /* 56 */
+  --ls-hero: -0.032em;
+}
+
+:root.sf {
+  --ls-xs: -0.01em;
+  --ls-sm: -0.016em;
+  --ls-base: -0.022em;
+  --ls-lg: 0.012em;
+  --ls-xl: 0.011em;
+  --ls-2xl: 0.009em;
+  --ls-3xl: 0.007em;
+  --ls-4xl: 0.004em;
+  --ls-5xl: 0em;
+  --ls-6xl: -0.003em;
+  --ls-7xl: -0.005em;
+  --ls-hero: -0.015em;
+}
+
+@theme {
+  --text-xs: 12px;
+  --text-xs--line-height: 1.33337;
+  --text-xs--letter-spacing: var(--ls-xs);
+  --text-sm: 14px;
+  --text-sm--line-height: 1.42859;
+  --text-sm--letter-spacing: var(--ls-sm);
+  --text-base: 17px;
+  --text-base--line-height: 1.47059;
+  --text-base--letter-spacing: var(--ls-base);
+  --text-lg: 19px;
+  --text-lg--line-height: 1.42115;
+  --text-lg--letter-spacing: var(--ls-lg);
+  --text-xl: 21px;
+  --text-xl--line-height: 1.38105;
+  --text-xl--letter-spacing: var(--ls-xl);
+  --text-2xl: 24px;
+  --text-2xl--line-height: 1.16667;
+  --text-2xl--letter-spacing: var(--ls-2xl);
+  --text-3xl: 28px;
+  --text-3xl--line-height: 1.14286;
+  --text-3xl--letter-spacing: var(--ls-3xl);
+  --text-4xl: 32px;
+  --text-4xl--line-height: 1.125;
+  --text-4xl--letter-spacing: var(--ls-4xl);
+  --text-5xl: 40px;
+  --text-5xl--line-height: 1.1;
+  --text-5xl--letter-spacing: var(--ls-5xl);
+  --text-6xl: 48px;
+  --text-6xl--line-height: 1.08349;
+  --text-6xl--letter-spacing: var(--ls-6xl);
+  --text-7xl: 56px;
+  --text-7xl--line-height: 1.07143;
+  --text-7xl--letter-spacing: var(--ls-7xl);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-raise: var(--bg-raise);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-on-accent: var(--on-accent);
+  --color-surface: var(--surface);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, var(--font-geist-mono), monospace;
+}
+
+/* Apple-style display roles, fluid between phone and desktop sizes. */
+@layer components {
+  .type-hero {
+    font-size: clamp(40px, 5.6vw, 80px);
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: var(--ls-hero);
+  }
+  .type-headline {
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.07143;
+    font-weight: 600;
+    letter-spacing: var(--ls-7xl);
+  }
+  .type-title {
+    font-size: clamp(24px, 2.6vw, 40px);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: var(--ls-5xl);
+  }
+  .type-subhead {
+    font-size: clamp(19px, 1.6vw, 21px);
+    line-height: 1.38105;
+    font-weight: 400;
+    letter-spacing: var(--ls-xl);
+  }
+  .type-eyebrow {
+    font-size: 14px;
+    line-height: 1.42859;
+    font-weight: 600;
+    letter-spacing: var(--ls-sm);
+  }
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-text-size-adjust: 100%;
+    transition: background-color 0.8s var(--ease-out), color 0.8s var(--ease-out);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: var(--ls-base);
+    font-optical-sizing: auto;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.fade-in {
+  animation: fade-in 0.45s var(--ease-out) both;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ───────────────────────── Glyphs ───────────────────────── */
+
+.glyph {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.glyph .glyph-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: glyph-draw 2.4s var(--ease-out) forwards;
+}
+.glyph .glyph-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: glyph-pulse 2.8s var(--ease-out) infinite;
+}
+.glyph .glyph-bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: glyph-bar 1.6s ease-in-out infinite alternate;
+}
+@keyframes glyph-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes glyph-pulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@keyframes glyph-bar {
+  from { transform: scaleY(0.35); }
+  to { transform: scaleY(1); }
+}
+
+.cursor-root {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cursor-root {
+    display: block;
+  }
+}
+
+/* ───────────────────────── Lander ───────────────────────── */
+
+.lander {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.folder-sheet {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.7s var(--ease-out);
+}
+.folder-sheet-c {
+  background: var(--surface);
+  transform: translateY(8%);
+}
+.folder-sheet-l {
+  transform: translate(-12%, 14%) rotate(-7deg) scale(0.9);
+}
+.folder-sheet-r {
+  transform: translate(12%, 14%) rotate(7deg) scale(0.9);
+}
+.folder:hover .folder-sheet-c,
+.folder:focus-visible .folder-sheet-c {
+  transform: translateY(-10%);
+}
+.folder:hover .folder-sheet-l,
+.folder:focus-visible .folder-sheet-l {
+  transform: translate(-26%, 2%) rotate(-13deg) scale(0.9);
+}
+.folder:hover .folder-sheet-r,
+.folder:focus-visible .folder-sheet-r {
+  transform: translate(26%, 2%) rotate(13deg) scale(0.9);
+}
+.folder-pocket {
+  transform-origin: 50% 100%;
+  transition: transform 0.7s var(--ease-out);
+}
+.folder:hover .folder-pocket,
+.folder:focus-visible .folder-pocket {
+  transform: rotateX(-12deg);
+}
+
+/* ───────────────────────── Arcade ───────────────────────── */
+
+.bug-pop {
+  animation: bug-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes bug-pop {
+  from { transform: translateY(-50%) scale(0.2) rotate(-30deg); opacity: 0; }
+  to { transform: translateY(-50%) scale(1) rotate(0); opacity: 1; }
+}
+
+.memory-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.memory-inner.is-up {
+  transform: rotateY(180deg);
+}
+.memory-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.memory-back {
+  align-items: center;
+  justify-content: center;
+}
+.memory-front {
+  transform: rotateY(180deg);
+}
+.memory-card:hover .memory-inner:not(.is-up) {
+  transform: rotateY(12deg);
+}
+
+/* Konami: spectrum mode */
+html.spectrum h1,
+html.spectrum h2 {
+  background: linear-gradient(90deg, #4db2ff, #b6f24a, #ff6b82, #ffb547, #a68bff, #4db2ff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: spectrum-slide 6s linear infinite;
+}
+@keyframes spectrum-slide {
+  to { background-position: 200% 0; }
+}
+
+.arcade-beam {
+  stroke-dasharray: 4 10;
+  animation: arcade-flow 1.2s linear infinite;
+}
+@keyframes arcade-flow {
+  to { stroke-dashoffset: -28; }
+}
+.arcade-bug {
+  animation: arcade-wiggle 0.5s ease-in-out infinite alternate;
+}
+@keyframes arcade-wiggle {
+  from { transform: rotate(-12deg) scale(0.92); }
+  to { transform: rotate(12deg) scale(1.05); }
+}
+.group:hover .arcade-card:nth-child(2) {
+  transform: translateY(-58%) rotate(0deg);
+}
+.arcade-card {
+  transition: transform 0.6s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ───────────────────────── Dock ───────────────────────── */
+
+.dock-glass {
+  background: color-mix(in oklab, var(--surface) 62%, transparent);
+  border: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 55%, transparent),
+    0 10px 40px -12px rgb(0 0 0 / 0.35),
+    0 2px 6px rgb(0 0 0 / 0.08);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+:root[data-theme="dark"] .dock-glass {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    0 10px 40px -12px rgb(0 0 0 / 0.8);
+}
+.dock-icon {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.45),
+    inset 0 -1px 0 rgb(0 0 0 / 0.08),
+    0 1px 2px rgb(0 0 0 / 0.18),
+    0 4px 10px -4px rgb(0 0 0 / 0.3);
+  transition: filter 0.2s;
+}
+button:active > .dock-icon {
+  filter: brightness(0.82);
+}
+button:focus-visible > .dock-icon {
+  outline: 2px solid #0a84ff;
+  outline-offset: 3px;
+}
+.dock-tip {
+  background: color-mix(in oklab, var(--surface) 88%, transparent);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px -6px rgb(0 0 0 / 0.3);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.dock-tip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: inherit;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}

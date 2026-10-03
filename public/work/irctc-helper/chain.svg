@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 288" width="900" height="288" role="img" aria-label="The booking chain: login, search, availability, book, fare, continue, pay and book, with the guards that hold each step">
+  <title>The booking chain</title>
+  <style>
+    :root { color-scheme: light dark; }
+    .bg   { fill: #ffffff; }
+    .card { fill: #f6f8fa; stroke: #d8dee4; }
+    .pay  { fill: rgba(207,34,46,.08); stroke: rgba(207,34,46,.45); }
+    .t    { fill: #1f2328; font: 600 13px ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+    .s    { fill: #6a737d; font: 500 10px ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+    .lbl  { fill: #6a737d; font: 600 10px ui-sans-serif, system-ui, "Segoe UI", sans-serif; letter-spacing: .08em; }
+    .g    { fill: #1a7f37; font: 500 10.5px ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+    .r    { fill: #cf222e; font: 600 11px ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+    .rail { stroke: #d8dee4; stroke-width: 2; }
+    .dot  { fill: #0969da; }
+
+    @media (prefers-color-scheme: dark) {
+      .bg   { fill: #0d1117; }
+      .card { fill: #161b22; stroke: #30363d; }
+      .pay  { fill: rgba(248,81,73,.10); stroke: rgba(248,81,73,.45); }
+      .t    { fill: #e6edf3; }
+      .s    { fill: #8b949e; }
+      .lbl  { fill: #8b949e; }
+      .g    { fill: #3fb950; }
+      .r    { fill: #f85149; }
+      .rail { stroke: #30363d; }
+      .dot  { fill: #2f81f7; }
+    }
+
+    /* The pulse walks the rail once per cycle, pausing on each step. */
+    @keyframes run {
+      0%    { transform: translateX(0);   opacity: 0; }
+      4%    { opacity: 1; }
+      6%    { transform: translateX(0); }
+      16%   { transform: translateX(118px); }
+      26%   { transform: translateX(236px); }
+      36%   { transform: translateX(354px); }
+      46%   { transform: translateX(472px); }
+      56%   { transform: translateX(590px); }
+      70%   { transform: translateX(708px); }
+      94%   { transform: translateX(708px); opacity: 1; }
+      100%  { transform: translateX(708px); opacity: 0; }
+    }
+    .pulse { animation: run 9s cubic-bezier(.4,0,.2,1) infinite; }
+
+    /* Each card lights as the pulse reaches it. */
+    @keyframes lite { 0%,100% { opacity: 0 } 8%,20% { opacity: 1 } }
+    .lite { fill: #0969da; opacity: 0; animation: lite 9s linear infinite; }
+    @media (prefers-color-scheme: dark) { .lite { fill: #2f81f7; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse, .lite { animation: none; }
+      .pulse { opacity: 1; }
+    }
+  </style>
+
+  <rect class="bg" width="900" height="288" rx="10"/>
+
+  <text class="lbl" x="34" y="34">AUTOMATIC BOOKING — NOTHING HERE SPENDS MONEY</text>
+  <text class="lbl" x="742" y="34" text-anchor="end" style="fill:#cf222e">AUTOMATIC PAYMENT</text>
+
+  <!-- rail -->
+  <line class="rail" x1="86" y1="146" x2="804" y2="146"/>
+
+  <!-- steps -->
+  <g transform="translate(34,64)">
+    <rect class="card" width="104" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="104" height="3" rx="1.5" style="animation-delay:0s"/>
+    <text class="t" x="14" y="27">LOGIN</text>
+    <text class="s" x="14" y="45">opens + fills</text>
+  </g>
+
+  <g transform="translate(152,64)">
+    <rect class="card" width="104" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="104" height="3" rx="1.5" style="animation-delay:.9s"/>
+    <text class="t" x="14" y="27">Search</text>
+    <text class="s" x="14" y="45">after fill settles</text>
+  </g>
+
+  <g transform="translate(270,64)">
+    <rect class="card" width="104" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="104" height="3" rx="1.5" style="animation-delay:1.8s"/>
+    <text class="t" x="14" y="27">Availability</text>
+    <text class="s" x="14" y="45">your train no.</text>
+  </g>
+
+  <g transform="translate(388,64)">
+    <rect class="card" width="104" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="104" height="3" rx="1.5" style="animation-delay:2.7s"/>
+    <text class="t" x="14" y="27">BOOK</text>
+    <text class="s" x="14" y="45">your class only</text>
+  </g>
+
+  <g transform="translate(506,64)">
+    <rect class="card" width="104" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="104" height="3" rx="1.5" style="animation-delay:3.6s"/>
+    <text class="t" x="14" y="27">Calc Fare</text>
+    <text class="s" x="14" y="45">matched on text</text>
+  </g>
+
+  <g transform="translate(624,64)">
+    <rect class="card" width="104" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="104" height="3" rx="1.5" style="animation-delay:4.5s"/>
+    <text class="t" x="14" y="27">Continue</text>
+    <text class="s" x="14" y="45">to payment</text>
+  </g>
+
+  <g transform="translate(742,64)">
+    <rect class="pay" width="124" height="64" rx="9"/>
+    <rect class="lite" x="0" y="0" width="124" height="3" rx="1.5" style="animation-delay:5.8s"/>
+    <text class="t" x="14" y="27">Pay &amp; Book</text>
+    <text class="r" x="14" y="45">3s · Esc cancels</text>
+  </g>
+
+  <!-- the pulse that walks the rail -->
+  <g class="pulse" transform="translate(86,146)">
+    <circle class="dot" r="5.5"/>
+    <circle class="dot" r="11" opacity=".18"/>
+  </g>
+
+  <!-- guards -->
+  <text class="lbl" x="34" y="196">HELD WHEN</text>
+  <g transform="translate(34,218)">
+    <text class="g" x="0" y="0">✓ an unsolved CAPTCHA is on the page — the chain stops and the toast names the step</text>
+    <text class="g" x="0" y="20">✓ the train number or class is missing — BOOK is held, never aimed at a likely card</text>
+    <text class="g" x="0" y="40">✓ the step already fired on this URL — one press per step, not one per re-render</text>
+  </g>
+  <g transform="translate(470,218)">
+    <text class="g" x="0" y="0">✓ the login form could not be filled completely</text>
+    <text class="g" x="0" y="20">✓ IRCTC reports an insufficient eWallet balance</text>
+    <text class="g" x="0" y="40">✓ the button is disabled, or the selection did not take</text>
+  </g>
+</svg>
