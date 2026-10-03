@@ -38,7 +38,7 @@ export const person = {
     github: "https://github.com/saharshwadekar",
   },
   company: "DealerMatix Technologies",
-  resume: "/resume/saharsh-wadekar-full-stack.pdf",
+  resume: "/resume/SaharshWadekar.pdf",
   /** What I'm looking for, said plainly. */
   seeking: "Full stack roles across React Native, Next.js, .NET and Salesforce, in Pune, remote, or anywhere I can relocate to.",
 };

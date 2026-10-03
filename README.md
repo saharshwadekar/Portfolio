@@ -44,7 +44,7 @@ src/lib/achievements.ts      XP, badges and toasts (stored in localStorage)
 public/work/                 case-study screenshots and diagrams
 ```
 
-Area accent colours are mirrored in `src/app/globals.css` (`[data-area=…]`); keep them in sync with `areas` in `profile.ts`. The résumé the site links to is `public/resume/saharsh-wadekar-full-stack.pdf`, exported from `resume-source/full-stack-anonymised.docx`. Client names are deliberately anonymised, on the site and in the résumé. The two office projects (DealerMatix DMS and Xmatix) are named with the company's products and list only the parts I built. `resume-source/` is not served, and `full-stack-original.docx` in it has the real client names: never move it into `public/`.
+Area accent colours are mirrored in `src/app/globals.css` (`[data-area=…]`); keep them in sync with `areas` in `profile.ts`. The résumé the site links to is `public/resume/SaharshWadekar.pdf`, exported from `resume-source/full-stack-anonymised.docx`. Client names are deliberately anonymised, on the site and in the résumé. The two office projects (DealerMatix DMS and Xmatix) are named with the company's products and list only the parts I built. `resume-source/` is not served, and `full-stack-original.docx` in it has the real client names: never move it into `public/`.
 
 ## Stack
 
