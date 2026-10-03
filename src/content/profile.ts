@@ -332,12 +332,7 @@ export const more: { name: string; blurb: string; stack: string; href?: string }
     blurb: "Role-based portal for admins, teachers and students: attendance, grades and accounts. I led the backend.",
     stack: "PHP · MySQL · Tailwind",
     href: "https://github.com/saharshwadekar/Institute-management-system",
-  },
-  {
-    name: "AI Mock-Interview Bot",
-    blurb: "Built at a national-level hackathon: generates questions, evaluates live code and writes feedback.",
-    stack: "Python · ML",
-  },
+  }
 ];
 
 export const experience = [
