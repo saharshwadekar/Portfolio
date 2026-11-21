@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      { source: "/play", destination: "/arcade/refract", permanent: true },
+      { source: "/arcade/:game(refract|bug-hunt|stack-match)", destination: "/arcade/relay-zero", permanent: false },
+      { source: "/play", destination: "/arcade/relay-zero", permanent: true },
       { source: "/:area(salesforce|backend|frontend|fullstack|mobile)", destination: "/", permanent: true },
       { source: "/work/atmos", destination: "/#recognition", permanent: true },
       { source: "/work/tatkal-helper", destination: "/work/irctc-ticket-helper", permanent: true },

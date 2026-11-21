@@ -8,6 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${site.url}/`, lastModified: now, priority: 1 },
     ...projects.map((p) => ({ url: `${site.url}/work/${p.slug}`, lastModified: now, priority: 0.8 })),
-    ...games.map((g) => ({ url: `${site.url}/arcade/${g.slug}`, lastModified: now, priority: 0.3 })),
+    ...games.filter(g => ["relay-zero", "orbit-rush"].includes(g.slug)).map((g) => ({ url: `${site.url}/arcade/${g.slug}`, lastModified: now, priority: 0.3 })),
   ];
 }

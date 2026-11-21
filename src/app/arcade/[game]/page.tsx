@@ -1,14 +1,13 @@
+import { OrbitRush } from "@/components/game/OrbitRush";
+import { RelayZero } from "@/components/game/relay/RelayZero";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { gameBySlug, games } from "@/components/game/games";
-import { RefractGame } from "@/components/game/RefractGame";
-import { BugHunt } from "@/components/game/BugHunt";
-import { StackMatch } from "@/components/game/StackMatch";
+import { gameBySlug } from "@/components/game/games";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return games.map((g) => ({ game: g.slug }));
+  return [{ game: "relay-zero" }, { game: "orbit-rush" }];
 }
 
 type Params = { params: Promise<{ game: string }> };
@@ -22,8 +21,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function GamePage({ params }: Params) {
   const { game } = await params;
-  if (game === "refract") return <RefractGame />;
-  if (game === "bug-hunt") return <BugHunt />;
-  if (game === "stack-match") return <StackMatch />;
+  if (game === "orbit-rush") return <OrbitRush />;
+  if (game === "relay-zero") return <RelayZero />;
   notFound();
 }

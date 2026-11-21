@@ -218,13 +218,13 @@ const HELP = [
   "skills            my stack",
   "projects          case studies",
   "open <thing>      work · experience · stack · contact · a project",
-  "play <game>       refract · bug-hunt · stack-match",
+  "play relay-zero   launch the arena",
   "resume            download my résumé",
   "theme             toggle light / dark",
   "date · clear      the usual",
 ];
 
-const GAMES = ["refract", "bug-hunt", "stack-match"];
+const GAMES = ["relay-zero", "refract", "bug-hunt", "stack-match"];
 
 /** A terminal that actually listens. */
 export function TerminalWidget() {
@@ -313,7 +313,7 @@ export function TerminalWidget() {
         if (GAMES.includes(arg)) {
           say(`launching ${arg}…`);
           navigate(`/arcade/${arg}`);
-        } else say("games: refract · bug-hunt · stack-match");
+        } else say("games: relay-zero");
         break;
       case "resume":
       case "cv":
@@ -369,14 +369,19 @@ export function TerminalWidget() {
   };
 
   return (
-    <Widget label="Terminal" className="w-[316px] !bg-[#141416] !p-0 text-[#ece8e1]" onClick={() => input.current?.focus({ preventScroll: true })}>
+    <Widget label="Terminal" className="w-full max-w-[560px] !bg-[#141416] !p-0 text-[#ece8e1]" onClick={() => input.current?.focus({ preventScroll: true })}>
       <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 font-mono text-[0.65rem] text-white/40">~/saharsh · zsh</span>
       </div>
-      <div ref={box} data-lenis-prevent data-no-drag className="h-[168px] cursor-text space-y-0.5 overflow-y-auto px-4 py-3 font-mono text-xs leading-relaxed">
+      <div className="flex flex-wrap gap-2 border-b border-white/10 px-4 py-3">
+        {["help", "projects", "whoami"].map((command) => (
+          <button key={command} onClick={() => run(command)} className="rounded-md border border-white/20 px-3 py-1 font-mono text-sm text-white/75 transition-colors hover:bg-white/10">{command}</button>
+        ))}
+      </div>
+      <div ref={box} data-lenis-prevent data-no-drag className="h-[220px] cursor-text space-y-0.5 overflow-y-auto px-4 py-3 font-mono text-sm leading-relaxed">
         {lines.map((l, i) => (
           <p key={i} className={`whitespace-pre-wrap break-words ${l.kind === "in" ? "text-white/90" : l.kind === "err" ? "text-[#ff8a80]" : "text-white/55"}`}>
             {l.kind === "in" && <span className="text-[#28c840]">→ </span>}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { areaById, education, experience, more, person, projectBySlug, recognition, stack } from "@/content/profile";
 import { Tint } from "@/components/layout/Tint";
 import { unlock } from "@/lib/achievements";
@@ -8,7 +8,7 @@ import { TLink } from "@/components/ui/TLink";
 import { Desktop } from "./Desktop";
 import { CaseFolders } from "./CaseFolders";
 import { Arcade } from "./Arcade";
-import { ScrollRail } from "./ScrollRail";
+import { TerminalWidget } from "./widgets";
 
 const ICONS: Record<string, { bg: string; path: React.ReactNode }> = {
   Publication: { bg: "#3b82f6", path: <path d="M6 3h9l4 4v14H6Zm9 0v4h4M9 12h7M9 16h7" fill="none" stroke="#fff" strokeWidth="1.7" strokeLinejoin="round" /> },
@@ -199,7 +199,7 @@ function ContactMin() {
     }
   };
   return (
-    <section id="contact" aria-label="Contact" className="px-[var(--gutter)] pb-40 pt-20">
+    <section id="contact" aria-label="Contact" className="px-[var(--gutter)] pb-20 pt-20">
       <div data-reveal data-rail-anchor className="mx-auto max-w-[1200px] rounded-[28px] bg-surface p-8 shadow-soft sm:p-14">
         <p className="text-sm text-muted">Open to roles and relocation</p>
         <h2 className="mt-3 max-w-[18ch] type-headline">Have something to build? Let&apos;s talk.</h2>
@@ -220,7 +220,7 @@ function ContactMin() {
         </div>
       </div>
       <p className="mx-auto mt-8 max-w-[1200px] text-xs text-muted">
-        © 2026 {person.name} · Designed and built by me with Next.js and GSAP · There are a few secrets here
+        © 2026 {person.name} · Designed and built by me with Next.js and GSAP
       </p>
     </section>
   );
@@ -228,15 +228,20 @@ function ContactMin() {
 
 /** The home page: a calm desktop, then the evidence. */
 export function Lander() {
-  const timeline = useRef<HTMLDivElement>(null);
   return (
     <div className="lander">
       <Tint area={null} />
       <Desktop />
-      {/* Everything below the fold hangs off one scroll timeline. */}
-      <div ref={timeline} className="relative xl:pl-24">
-        <ScrollRail container={timeline} />
+      <div className="relative">
         <CaseFolders />
+        <section className="terminal-section" aria-label="Interactive terminal">
+          <div>
+            <p className="project-kicker">A little curiosity goes a long way</p>
+            <h2>Take a look around.</h2>
+            <p>Explore my work from the command line. Start with a command below, or type your own.</p>
+          </div>
+          <TerminalWidget />
+        </section>
         <ExperienceRow />
         <StackRow />
         <MoreRow />

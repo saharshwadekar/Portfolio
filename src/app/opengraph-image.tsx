@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { areas, person } from "@/content/profile";
+import { person } from "@/content/profile";
 
 export const alt = `${person.name}, ${person.role}`;
 export const size = { width: 1200, height: 630 };
@@ -27,12 +27,10 @@ export default function OpengraphImage() {
           <span>PUNE, INDIA</span>
         </div>
         <div style={{ position: "absolute", right: 90, top: 150, display: "flex" }}>
-          <svg width="420" height="300" viewBox="0 0 420 300">
-            <line x1="0" y1="190" x2="150" y2="160" stroke="#ffffff" strokeWidth="3" />
-            {areas.map((l, i) => (
-              <polygon key={l.id} points={`200,158 420,${40 + i * 50} 420,${80 + i * 50}`} fill={l.accent} opacity="0.75" />
-            ))}
-            <polygon points="180,50 260,200 100,200" fill="none" stroke="#ece8e1" strokeOpacity="0.7" strokeWidth="2" />
+          <svg width="260" height="215" viewBox="0 0 48 40" fill="none">
+            <path d="M24 7H12L5 15l15 10-7 8H3" stroke="#e7efff" strokeWidth="4" />
+            <path d="m22 14 5 19 8-13 5 13 6-26" stroke="#e7efff" strokeWidth="4" />
+            <path d="M27 7h6" stroke="#8aa6ff" strokeWidth="4" />
           </svg>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>

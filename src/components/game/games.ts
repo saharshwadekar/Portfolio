@@ -1,7 +1,7 @@
 import type { AreaId } from "@/content/profile";
 
 export interface GameInfo {
-  slug: "refract" | "bug-hunt" | "stack-match";
+  slug: "orbit-rush" | "relay-zero" | "refract" | "bug-hunt" | "stack-match";
   title: string;
   tag: string;
   blurb: string;
@@ -10,6 +10,8 @@ export interface GameInfo {
 }
 
 export const games: GameInfo[] = [
+  { slug: "orbit-rush", title: "Orbit Rush", tag: "Orbital survival", blurb: "Rotate through approaching gates and chase your best survival time.", area: "frontend", color: "#93ffda" },
+  { slug: "relay-zero", title: "Relay Zero", tag: "Exploration · Arena shooter", blurb: "Restore a fractured network, upgrade your ship, and defeat its guardian.", area: "backend", color: "#8ba6ff" },
   {
     slug: "refract",
     title: "Refract",

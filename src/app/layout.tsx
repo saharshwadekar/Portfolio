@@ -8,7 +8,6 @@ import { Nav } from "@/components/layout/Nav";
 import { Toasts } from "@/components/layout/Achievements";
 import { RouterBridge } from "@/components/layout/RouterBridge";
 import { EasterEggs } from "@/components/layout/EasterEggs";
-import { Dock } from "@/components/lander/Dock";
 
 // SF Pro is used wherever the OS provides it (Apple devices); Inter, with optical
 // sizing, is the closest open fallback everywhere else.
@@ -90,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main" className="relative">
             {children}
           </main>
-          <Dock />
           <Toasts />
         </Providers>
       </body>
