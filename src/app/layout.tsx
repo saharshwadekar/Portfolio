@@ -8,6 +8,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Toasts } from "@/components/layout/Achievements";
 import { RouterBridge } from "@/components/layout/RouterBridge";
 import { EasterEggs } from "@/components/layout/EasterEggs";
+import { OpeningKey } from "@/components/layout/OpeningKey";
 
 // SF Pro is used wherever the OS provides it (Apple devices); Inter, with optical
 // sizing, is the closest open fallback everywhere else.
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body>
+        <OpeningKey />
         <a
           href="#main"
           className="fixed left-4 top-4 z-[200] -translate-y-24 rounded-full bg-fg px-4 py-2.5 text-sm text-bg transition-transform focus:translate-y-0"

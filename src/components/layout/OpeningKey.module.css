@@ -1,0 +1,37 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: var(--bg);
+  animation: reveal-page 1150ms var(--ease-out) both;
+}
+
+.opening, .header {
+  position: relative;
+  display: block;
+}
+
+.opening {
+  width: clamp(220px, 34vw, 330px);
+  aspect-ratio: 1;
+}
+
+.header {
+  width: 48px;
+  height: 43px;
+  flex: none;
+}
+
+@keyframes reveal-page {
+  0%, 76% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+:global(body:has(:focus-visible)) .overlay { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay { display: none; }
+}

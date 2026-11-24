@@ -503,14 +503,14 @@ button:focus-visible > .dock-icon {
   width: min(1200px, calc(100% - var(--gutter) * 2));
   margin-inline: auto;
 }
-.portfolio-intro { padding-top: 110px; padding-bottom: 40px; }
-.intro-topline, .intro-bottom, .intro-footnote, .work-heading {
+.portfolio-intro { padding-top: 112px; padding-bottom: 28px; }
+.intro-topline, .intro-bottom, .work-heading {
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .intro-topline { font-size: 14px; color: var(--muted); }
 .availability { display: inline-flex; align-items: center; gap: 8px; }
 .availability > span { width: 7px; height: 7px; border-radius: 50%; background: #24834a; }
-.intro-name { margin-top: 54px; margin-bottom: 12px; font-size: 21px; }
+.intro-name { margin-top: 32px; margin-bottom: 12px; font-size: 21px; }
 .portfolio-intro h1 { font-size: clamp(40px, 5.8vw, 80px); line-height: 1.06; letter-spacing: -0.055em; font-weight: 600; }
 .portfolio-intro h1 > span { color: #6480e8; }
 :root[data-theme="light"] .portfolio-intro h1 > span { color: #375bc4; }
@@ -521,8 +521,7 @@ button:focus-visible > .dock-icon {
 .portfolio-button:hover { transform: translateY(-2px); background: var(--bg-raise); }
 .portfolio-button.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .portfolio-button.primary:hover { opacity: .85; }
-.intro-footnote { margin-top: 46px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: 13px; }
-.selected-work { padding-top: 38px; padding-bottom: 70px; scroll-margin-top: 70px; }
+.selected-work { padding-top: 24px; padding-bottom: 70px; scroll-margin-top: 70px; }
 .work-heading { margin-bottom: 25px; }
 .work-heading h2 { font-size: 34px; letter-spacing: -.035em; font-weight: 600; }
 .work-heading h2 > span { color: #6480e8; }
@@ -562,13 +561,11 @@ button:focus-visible > .dock-icon {
   .folder-pocket > div > span { display: none; }
 }
 @media (max-width: 700px) {
-  .portfolio-intro { padding-top: 90px; }
   .intro-topline { flex-wrap: wrap; gap: 10px; font-size: 13px; }
-  .intro-name { margin-top: 38px; font-size: 18px; }
+  .intro-name { margin-top: 24px; font-size: 18px; }
   .portfolio-intro h1 { font-size: clamp(36px, 8vw, 54px); }
   .intro-bottom > p { font-size: 16px; }
   .intro-actions { flex-wrap: wrap; }
-  .intro-footnote { align-items: flex-start; flex-direction: column; gap: 8px; margin-top: 32px; }
   .work-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
   .featured-project { grid-template-columns: 1fr; }
   .system-preview { border-left: 0; border-top: 1px solid var(--line); }
@@ -585,7 +582,6 @@ button:focus-visible > .dock-icon {
 .site-header { position: fixed; inset: 0 0 auto; z-index: 70; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); }
 .site-header-inner { width: min(1200px, calc(100% - var(--gutter) * 2)); margin: auto; height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 14px; font-size: 15px; font-weight: 600; }
-.brand-mark { width: 43px; height: 38px; }
 .brand small { display: block; font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
 .desktop-links, .header-actions { display: flex; align-items: center; gap: 8px; }
 .desktop-links button { padding: 10px 13px; font-size: 14px; color: var(--muted); border-radius: 8px; transition: color .2s, background .2s; }
@@ -596,22 +592,25 @@ button:focus-visible > .dock-icon {
 .mobile-menu-button { display: none; font-size: 14px; padding: 10px; }
 .mobile-navigation { padding: 10px var(--gutter) 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 1px solid var(--line); }
 .mobile-navigation button { padding: 14px; background: var(--surface); text-align: left; border-radius: 8px; }
-.portfolio-intro { padding-top: 142px; }
 .lander section[id] { scroll-margin-top: 96px; }
 .experiment-section { width: min(1200px, calc(100% - var(--gutter) * 2)); margin: 40px auto 65px; display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; }
 .experiment-copy { padding: 48px; }
 .experiment-copy .project-kicker { font-size: 12px; letter-spacing: .06em; }
 .experiment-copy h2 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -.04em; font-weight: 600; margin: 24px 0; }
 .experiment-copy > p:not(.project-kicker) { font-size: 16px; color: var(--muted); line-height: 1.65; }
-.experiment-copy ul { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; margin: 24px 0; color: var(--muted); }
+.experiment-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .experiment-note { display: block; font-size: 12px; color: var(--muted); margin-top: 16px; }
-.experiment-preview { min-height: 450px; position: relative; overflow: hidden; background: #080e1b; }
-.relay-preview-canvas { width: 100%; height: 100%; position: absolute; inset: 0; }
-.experiment-preview-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; display: flex; justify-content: space-between; gap: 12px; color: #c3d7ff; font-size: 12px; letter-spacing: .08em; background: linear-gradient(transparent, #080e1b); }
-.experiment-preview-label span:last-child { letter-spacing: 0; }
+.experiment-preview { min-height: 450px; position: relative; overflow: hidden; background: #080e1b; color: #e7efff; }
+.gameplay-canvas { width: 100%; height: 100%; position: absolute; inset: 0; }
+.gameplay-controls { position: absolute; z-index: 1; top: 0; inset-inline: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 14px; background: linear-gradient(#080e1b, transparent); }
+.gameplay-switch { display: flex; flex-wrap: wrap; gap: 6px; }
+.gameplay-controls button { min-height: 40px; padding: 8px 12px; border-radius: 8px; border: 1px solid #516287; background: #111c31; font-size: 13px; }
+.gameplay-controls button[aria-pressed="true"] { background: #cfddff; border-color: #cfddff; color: #080e1b; }
+.experiment-preview-label { position: absolute; bottom: 0; inset-inline: 0; padding: 22px 16px 16px; background: linear-gradient(transparent, #080e1b); color: #e7efff; font-size: 13px; }
+.gameplay-fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; text-align: center; font-size: 14px; }
 @media (max-width: 900px) { .desktop-links { display: none; } .mobile-menu-button { display: block; } .experiment-section { grid-template-columns: 1fr; } .experiment-copy { padding: 30px; } .experiment-preview { min-height: 360px; } }
 @media (min-width: 901px) { .mobile-navigation { display: none; } }
-@media (max-width: 500px) { .brand-surname { display: none; } .header-resume { display: none; } .site-header-inner { gap: 8px; height: 70px; } .portfolio-intro { padding-top: 112px; } }
+@media (max-width: 500px) { .brand-surname { display: none; } .header-resume { display: none; } .site-header-inner { gap: 8px; height: 70px; } .portfolio-intro { padding-top: 96px; } }
 
 /* Relay Zero is an original canvas arena with native controls around it. */
 .relay-game { position: fixed; inset: 0; z-index: 90; color: #e7efff; background: #080e1b; font-family: var(--font-inter), sans-serif; isolation: isolate; }

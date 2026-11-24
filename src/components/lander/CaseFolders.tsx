@@ -149,7 +149,7 @@ export function CaseFolders() {
         {remaining.map((p) => (
           <div key={p.slug}>
             <ProjectFolder p={p} />
-            <p className="project-caption">{p.slug === "xmatix" ? "Metadata-driven business modules across web and mobile." : p.slug === "irctc-ticket-helper" ? "A faster booking workflow, built as a Chrome extension." : "Create Salesforce quotes directly from an Excel sheet."}</p>
+            <p className="project-caption">{p.slug === "xmatix" ? "Shipped metadata-driven workflows across web and mobile." : p.slug === "irctc-ticket-helper" ? "A faster booking workflow, built as a Chrome extension." : "Create Salesforce quotes directly from an Excel sheet."}</p>
           </div>
         ))}
       </div>

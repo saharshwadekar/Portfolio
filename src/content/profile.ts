@@ -67,10 +67,16 @@ export interface Shot {
   height: number;
 }
 
+export interface FlowStep {
+  label: string;
+  detail: string;
+}
+
 export interface Section {
   heading: string;
   body?: string;
   points?: string[];
+  flow?: FlowStep[];
 }
 
 export interface Project {
@@ -89,7 +95,7 @@ export interface Project {
   glyph: "route" | "graph" | "invoice" | "rail" | "sheet";
   links?: Link[];
   /** A short left-to-right picture of how the pieces connect. */
-  flow?: { label: string; detail: string }[];
+  flow?: FlowStep[];
   diagram?: Shot;
   shots?: Shot[];
   sections: Section[];
@@ -136,6 +142,15 @@ export const projects: Project[] = [
         ],
       },
       {
+        heading: "Offline check-in",
+        body: "Field reps can check in during a visit even on a weak network. The app handles capture on the phone and Apex handles verification.",
+        flow: [
+          { label: "Capture", detail: "The rep takes a selfie and the app records their GPS location." },
+          { label: "Check in offline", detail: "The app supports check-in even when the phone has no signal." },
+          { label: "Verify online", detail: "Apex verifies the check-in when it reaches Salesforce." },
+        ],
+      },
+      {
         heading: "In production",
         points: [
           "Fixed critical production bugs and improved Team Score performance for the two largest client brands.",
@@ -154,9 +169,8 @@ export const projects: Project[] = [
     stack: [".NET 10", "C#", "Next.js", "React 19", "TypeScript", "Ant Design", "Formily", "TanStack Query", "Expo", "React Native", "Zustand"],
     area: "backend",
     summary:
-      "DealerMatix's own multi-tenant business platform: metadata-driven entities and screens, automation, integrations and a field-sales mobile app, live for three or more enterprise clients. I build its business modules on web and mobile.",
+      "I shipped metadata-driven workflows across web and mobile for Xmatix, DealerMatix’s business platform live at 3+ enterprise clients.",
     stats: [
-      { value: "360+", label: "Commits since Oct 2025" },
       { value: "3+", label: "Enterprise clients live" },
       { value: "Web + mobile", label: "Most modules shipped on both" },
     ],
@@ -342,7 +356,7 @@ export const experience = [
     period: "Jul 2025 — Present",
     points: [
       "On the 6–8 person React Native team behind DealerMatix DMS: 3,000+ daily users across four brands.",
-      "On Xmatix since October 2025, with 360+ commits across the Next.js web app, the Expo mobile app and the .NET domain layer: Bank Reconciliation, the Product Configurator, Item 360, GST and e-invoicing, and order allocation.",
+      "Shipped business workflows for Xmatix, live at 3+ enterprise clients. Built bank reconciliation on web and brought Item 360 and manual lot allocation to mobile.",
       "Integrate third-party systems through MuleSoft and REST/SOAP, and validate every endpoint in Postman.",
     ],
   },

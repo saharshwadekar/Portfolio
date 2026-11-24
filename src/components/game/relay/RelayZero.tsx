@@ -11,30 +11,6 @@ const upgrades: { id: Upgrade; title: string; detail: string }[] = [
   { id: "shield", title: "Recovery", detail: "Restore 55 hull points" },
 ];
 
-export function RelayPreview() {
-  const canvas = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const el = canvas.current;
-    const ctx = el?.getContext("2d");
-    if (!el || !ctx) return;
-    const game = new RelayEngine();
-    game.camera = { x: 560, y: 510 };
-    game.player.x = 540; game.player.y = 550; game.player.angle = -0.5;
-    game.charge[0] = 68;
-    game.addEnemy(0); game.addEnemy(1);
-    const draw = () => {
-      const bounds = el.getBoundingClientRect();
-      const scale = Math.min(window.devicePixelRatio, 2);
-      el.width = bounds.width * scale; el.height = bounds.height * scale;
-      ctx.setTransform(scale, 0, 0, scale, 0, 0);
-      game.draw(ctx, bounds.width, bounds.height);
-    };
-    const observer = new ResizeObserver(draw); observer.observe(el); draw();
-    return () => observer.disconnect();
-  }, []);
-  return <canvas ref={canvas} className="relay-preview-canvas" role="img" aria-label="Relay Zero arena showing a spacecraft restoring a glowing network relay" />;
-}
-
 export function RelayZero() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const engine = useRef<RelayEngine | null>(null);

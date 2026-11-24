@@ -50,10 +50,6 @@ export function Desktop() {
           <a href={person.resume} target="_blank" rel="noreferrer" className="portfolio-button">Résumé PDF</a>
         </div>
       </div>
-      <div className="intro-footnote" data-intro>
-        <span>Web, mobile & everything behind them.</span>
-        <span>React Native / Next.js / .NET / Salesforce</span>
-      </div>
     </section>
   );
 }

@@ -7,6 +7,7 @@ import { navigate } from "@/lib/transition";
 import { person } from "@/content/profile";
 import { toggleTheme, getLenis } from "./Providers";
 import { TLink } from "@/components/ui/TLink";
+import { GlassKey } from "./OpeningKey";
 
 const links = [
   { id: "work", label: "Work" },
@@ -15,17 +16,6 @@ const links = [
   { id: "arcade", label: "Play" },
   { id: "contact", label: "Contact" },
 ];
-
-/** Interlocking S and W paths, drawn like connected layers of a system. */
-export function Monogram({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 40" className={className} aria-hidden="true" fill="none">
-      <path d="M24 7H12L5 15l15 10-7 8H3" stroke="currentColor" strokeWidth="4" strokeLinecap="square" strokeLinejoin="miter" />
-      <path d="m22 14 5 19 8-13 5 13 6-26" stroke="currentColor" strokeWidth="4" strokeLinejoin="miter" />
-      <path d="M27 7h6" stroke="#6480e8" strokeWidth="4" />
-    </svg>
-  );
-}
 
 export function goSection(id: string) {
   const el = document.getElementById(id);
@@ -51,7 +41,7 @@ export function Nav() {
     <header className="site-header">
       <div className="site-header-inner">
         <TLink href="/" className="brand" aria-label="Saharsh Wadekar home">
-          <Monogram className="brand-mark" />
+          <GlassKey variant="header" />
           <span>Saharsh<span className="brand-surname"> Wadekar</span><small>Engineer & builder</small></span>
         </TLink>
         <nav className="desktop-links" aria-label="Main navigation">

@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { projectBySlug, projects, type Project } from "@/content/profile";
+import { projectBySlug, projects, type FlowStep } from "@/content/profile";
 import { Tint } from "@/components/layout/Tint";
 import { ProjectGlyph } from "@/components/ui/ProjectGlyph";
 import { TLink } from "@/components/ui/TLink";
 
 /** Left-to-right boxes showing how the pieces of a project connect. */
-function Flow({ flow }: { flow: NonNullable<Project["flow"]> }) {
+function Flow({ flow, caption = "How it fits together" }: { flow: FlowStep[]; caption?: string }) {
   return (
-    <figure aria-label="How it fits together" className="rounded-[22px] border border-line bg-surface p-5 shadow-soft sm:p-8">
-      <figcaption className="mb-5 text-sm text-muted">How it fits together</figcaption>
+    <figure aria-label={caption} className="rounded-[22px] border border-line bg-surface p-5 shadow-soft sm:p-8">
+      <figcaption className="mb-5 text-sm text-muted">{caption}</figcaption>
       <ol className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
         {flow.map((step, i) => (
           <li key={step.label} className="contents">
@@ -123,6 +123,7 @@ export function CaseStudy({ slug }: { slug: string }) {
               <h2 className="text-xl font-semibold">{s.heading}</h2>
               <div className="max-w-[64ch] space-y-4 text-base">
                 {s.body && <p>{s.body}</p>}
+                {s.flow && <Flow flow={s.flow} caption="Check-in flow" />}
                 {s.points && (
                   <ul className="space-y-3">
                     {s.points.map((pt) => (
